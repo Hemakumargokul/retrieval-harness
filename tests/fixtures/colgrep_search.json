@@ -1,0 +1,496 @@
+[
+  {
+    "unit": {
+      "name": "fuse",
+      "qualified_name": "src/rh/fuse.py::fuse",
+      "file": "/home/hem/projects/retrieval-harness/src/rh/fuse.py",
+      "line": 1,
+      "end_line": 44,
+      "language": "python",
+      "unit_type": "function",
+      "signature": "def fuse(results: list[EngineResult], k: int = 60) -> list[Evidence]:",
+      "docstring": "\"\"\"Reciprocal rank fusion over all engines, then merge nearby ranges per file.",
+      "parameters": [
+        "results",
+        "k"
+      ],
+      "return_type": "list[Evidence]",
+      "extends": null,
+      "parent_class": null,
+      "calls": [
+        "Evidence",
+        "append",
+        "enumerate",
+        "items",
+        "list",
+        "max",
+        "min",
+        "setdefault",
+        "sort"
+      ],
+      "called_by": [
+        "_retrieve",
+        "test_fuse_keeps_distant_ranges_apart",
+        "test_fuse_merges_and_prefers_multi_engine"
+      ],
+      "complexity": 21,
+      "has_loops": true,
+      "has_branches": true,
+      "has_error_handling": false,
+      "variables": [
+        "by_file",
+        "cur",
+        "cur.end",
+        "cur.rank",
+        "cur.role",
+        "cur.score",
+        "cur.symbol",
+        "ev.rank",
+        "flat",
+        "merged"
+      ],
+      "imports": [],
+      "code": "def fuse(results: list[EngineResult], k: int = 60) -> list[Evidence]:\n    \"\"\"Reciprocal rank fusion over all engines, then merge nearby ranges per file.\"\"\"\n    flat: list[Evidence] = []\n    for r in results:\n        for ev in r.evidence:\n            flat.append(Evidence(**{**ev.__dict__, \"score\": 1.0 / (k + ev.rank + 1),\n                                    \"sources\": list(ev.sources)}))\n\n    by_file: dict[str, list[Evidence]] = {}\n    for ev in flat:\n        by_file.setdefault(ev.path, []).append(ev)\n\n    merged: list[Evidence] = []\n    for path, evs in by_file.items():\n        evs.sort(key=lambda e: (e.start, e.end))\n        cur = evs[0]\n        for ev in evs[1:]:\n            if ev.start <= cur.end + MERGE_GAP:\n                cur.end = max(cur.end, ev.end)\n                cur.score += ev.score\n                cur.rank = min(cur.rank, ev.rank)\n                cur.symbol = cur.symbol or ev.symbol\n                if cur.role == \"primary\" and ev.role != \"primary\":\n                    cur.role = ev.role\n                for s in ev.sources:\n                    if s not in cur.sources:\n                        cur.sources.append(s)\n            else:\n                merged.append(cur)\n                cur = ev\n        merged.append(cur)\n\n    merged.sort(key=lambda e: (-e.score, e.path, e.start))\n    for i, ev in enumerate(merged):\n        ev.rank = i\n    return merged"
+    },
+    "score": 1.1082989,
+    "matches": [
+      {
+        "line": 9,
+        "end_line": 44,
+        "name": "fuse",
+        "score": 1.1082989
+      },
+      {
+        "line": 6,
+        "end_line": 6,
+        "name": "MERGE_GAP",
+        "score": 0.73591226
+      },
+      {
+        "line": 1,
+        "end_line": 4,
+        "name": "",
+        "score": 0.36250368
+      }
+    ]
+  },
+  {
+    "unit": {
+      "name": "EngineResult",
+      "qualified_name": "src/rh/engines/base.py::EngineResult",
+      "file": "/home/hem/projects/retrieval-harness/src/rh/engines/base.py",
+      "line": 1,
+      "end_line": 44,
+      "language": "python",
+      "unit_type": "class",
+      "signature": "class EngineResult:",
+      "docstring": null,
+      "parameters": [],
+      "return_type": null,
+      "extends": null,
+      "parent_class": null,
+      "calls": [
+        "field"
+      ],
+      "called_by": [
+        "FakeEngine",
+        "RipgrepEngine",
+        "search",
+        "test_fuse_keeps_distant_ranges_apart",
+        "test_fuse_merges_and_prefers_multi_engine"
+      ],
+      "complexity": 1,
+      "has_loops": false,
+      "has_branches": false,
+      "has_error_handling": false,
+      "variables": [
+        "diagnostics",
+        "evidence",
+        "ms"
+      ],
+      "imports": [],
+      "code": "@dataclass\nclass EngineResult:\n    evidence: list[Evidence] = field(default_factory=list)\n    diagnostics: list[Diagnostic] = field(default_factory=list)\n    ms: int = 0"
+    },
+    "score": 0.8005108,
+    "matches": [
+      {
+        "line": 19,
+        "end_line": 23,
+        "name": "EngineResult",
+        "score": 0.8005108
+      },
+      {
+        "line": 12,
+        "end_line": 16,
+        "name": "EngineStatus",
+        "score": 0.3613601
+      },
+      {
+        "line": 26,
+        "end_line": 31,
+        "name": "Engine",
+        "score": 0.35256773
+      },
+      {
+        "line": 29,
+        "end_line": 29,
+        "name": "Engine.status",
+        "score": 0.3169824
+      },
+      {
+        "line": 31,
+        "end_line": 31,
+        "name": "Engine.search",
+        "score": 0.3162723
+      },
+      {
+        "line": 38,
+        "end_line": 44,
+        "name": "role_for_path",
+        "score": 0.27192265
+      },
+      {
+        "line": 1,
+        "end_line": 9,
+        "name": "",
+        "score": 0.19001393
+      },
+      {
+        "line": 35,
+        "end_line": 35,
+        "name": "TEST_DIRS",
+        "score": 0.1475958
+      },
+      {
+        "line": 34,
+        "end_line": 34,
+        "name": "TEST_PATTERNS",
+        "score": 0.10211279
+      }
+    ]
+  },
+  {
+    "unit": {
+      "name": "_ERROR_LINE",
+      "qualified_name": "src/rh/analyze.py::_ERROR_LINE",
+      "file": "/home/hem/projects/retrieval-harness/src/rh/analyze.py",
+      "line": 1,
+      "end_line": 90,
+      "language": "python",
+      "unit_type": "constant",
+      "signature": "_ERROR_LINE = re.compile(r\"(Error|Exception|Traceback|panic:|FATAL)\\b|^\\s+File \\\".*\\\", line \\d+\")",
+      "docstring": null,
+      "parameters": [],
+      "return_type": null,
+      "extends": null,
+      "parent_class": null,
+      "calls": [],
+      "called_by": [],
+      "complexity": 1,
+      "has_loops": false,
+      "has_branches": false,
+      "has_error_handling": false,
+      "variables": [],
+      "imports": [
+        "dataclasses",
+        "re"
+      ],
+      "code": "_ERROR_LINE = re.compile(r\"(Error|Exception|Traceback|panic:|FATAL)\\b|^\\s+File \\\".*\\\", line \\d+\")"
+    },
+    "score": 0.7236548,
+    "matches": [
+      {
+        "line": 33,
+        "end_line": 33,
+        "name": "_ERROR_LINE",
+        "score": 0.7236548
+      },
+      {
+        "line": 10,
+        "end_line": 13,
+        "name": "CROSS_FILE_KEYWORDS",
+        "score": 0.38180187
+      },
+      {
+        "line": 67,
+        "end_line": 90,
+        "name": "analyze",
+        "score": 0.32193282
+      },
+      {
+        "line": 6,
+        "end_line": 9,
+        "name": "SKIP_PHRASES",
+        "score": 0.28164974
+      },
+      {
+        "line": 14,
+        "end_line": 17,
+        "name": "KNOWN_EXTS",
+        "score": 0.2649461
+      },
+      {
+        "line": 30,
+        "end_line": 32,
+        "name": "_PATH",
+        "score": 0.26071674
+      },
+      {
+        "line": 26,
+        "end_line": 26,
+        "name": "_CAMEL",
+        "score": 0.25966388
+      },
+      {
+        "line": 18,
+        "end_line": 24,
+        "name": "STOPWORDS",
+        "score": 0.22746725
+      },
+      {
+        "line": 28,
+        "end_line": 28,
+        "name": "_DOTTED",
+        "score": 0.22729965
+      },
+      {
+        "line": 27,
+        "end_line": 27,
+        "name": "_SNAKE",
+        "score": 0.22613122
+      },
+      {
+        "line": 36,
+        "end_line": 51,
+        "name": "TaskAnalysis",
+        "score": 0.20589165
+      },
+      {
+        "line": 45,
+        "end_line": 51,
+        "name": "TaskAnalysis.anchors",
+        "score": 0.19595002
+      },
+      {
+        "line": 29,
+        "end_line": 29,
+        "name": "_QUOTED",
+        "score": 0.14953934
+      },
+      {
+        "line": 54,
+        "end_line": 60,
+        "name": "should_skip",
+        "score": 0.12527509
+      },
+      {
+        "line": 63,
+        "end_line": 64,
+        "name": "_dedupe",
+        "score": 0.11940438
+      },
+      {
+        "line": 1,
+        "end_line": 4,
+        "name": "",
+        "score": 0.10390582
+      }
+    ]
+  },
+  {
+    "unit": {
+      "name": "parse_rg_json",
+      "qualified_name": "src/rh/engines/ripgrep.py::parse_rg_json",
+      "file": "/home/hem/projects/retrieval-harness/src/rh/engines/ripgrep.py",
+      "line": 1,
+      "end_line": 83,
+      "language": "python",
+      "unit_type": "function",
+      "signature": "def parse_rg_json(stdout: str, query: str) -> list[Evidence]:",
+      "docstring": null,
+      "parameters": [
+        "stdout",
+        "query"
+      ],
+      "return_type": "list[Evidence]",
+      "extends": null,
+      "parent_class": null,
+      "calls": [
+        "Evidence",
+        "append",
+        "get",
+        "loads",
+        "removeprefix",
+        "role_for_path",
+        "splitlines"
+      ],
+      "called_by": [
+        "RipgrepEngine",
+        "search",
+        "test_parse_rg_json"
+      ],
+      "complexity": 7,
+      "has_loops": true,
+      "has_branches": true,
+      "has_error_handling": true,
+      "variables": [
+        "d",
+        "ev",
+        "n",
+        "out",
+        "path"
+      ],
+      "imports": [
+        "json",
+        "re"
+      ],
+      "code": "def parse_rg_json(stdout: str, query: str) -> list[Evidence]:\n    out: list[Evidence] = []\n    for line in stdout.splitlines():\n        try:\n            ev = json.loads(line)\n        except ValueError:\n            continue\n        if ev.get(\"type\") != \"match\":\n            continue\n        d = ev[\"data\"]\n        path = d.get(\"path\", {}).get(\"text\")\n        n = d.get(\"line_number\")\n        if path is None or n is None:\n            continue\n        path = path.removeprefix(\"./\")\n        out.append(Evidence(path=path, start=n, end=n, source=\"ripgrep\",\n                            role=role_for_path(path), query=query))\n    return out"
+    },
+    "score": 0.6183711,
+    "matches": [
+      {
+        "line": 15,
+        "end_line": 32,
+        "name": "parse_rg_json",
+        "score": 0.6183711
+      },
+      {
+        "line": 1,
+        "end_line": 12,
+        "name": "",
+        "score": 0.38620302
+      },
+      {
+        "line": 51,
+        "end_line": 83,
+        "name": "RipgrepEngine",
+        "score": 0.36081493
+      },
+      {
+        "line": 35,
+        "end_line": 44,
+        "name": "rank_by_anchor_coverage",
+        "score": 0.34243327
+      },
+      {
+        "line": 57,
+        "end_line": 83,
+        "name": "RipgrepEngine.search",
+        "score": 0.33938918
+      },
+      {
+        "line": 47,
+        "end_line": 48,
+        "name": "_looks_like_path",
+        "score": 0.30344915
+      },
+      {
+        "line": 54,
+        "end_line": 55,
+        "name": "RipgrepEngine.status",
+        "score": 0.2953379
+      }
+    ]
+  },
+  {
+    "unit": {
+      "name": "Evidence",
+      "qualified_name": "src/rh/models.py::Evidence",
+      "file": "/home/hem/projects/retrieval-harness/src/rh/models.py",
+      "line": 1,
+      "end_line": 71,
+      "language": "python",
+      "unit_type": "class",
+      "signature": "class Evidence:",
+      "docstring": null,
+      "parameters": [],
+      "return_type": null,
+      "extends": null,
+      "parent_class": null,
+      "calls": [
+        "field"
+      ],
+      "called_by": [
+        "ContextPackage",
+        "RipgrepEngine",
+        "_as_reference",
+        "from_dict",
+        "fuse",
+        "parse_rg_json",
+        "search",
+        "test_excerpt_respects_max_lines",
+        "test_excerpt_widens_to_enclosing_method",
+        "test_fuse_keeps_distant_ranges_apart",
+        "test_fuse_merges_and_prefers_multi_engine",
+        "test_package_roundtrip",
+        "test_rank_by_anchor_coverage",
+        "test_retrieve_with_fake_engine",
+        "test_verify_drops_missing_and_out_of_range"
+      ],
+      "complexity": 1,
+      "has_loops": false,
+      "has_branches": false,
+      "has_error_handling": false,
+      "variables": [
+        "end",
+        "path",
+        "query",
+        "rank",
+        "role",
+        "score",
+        "self.sources",
+        "source",
+        "sources",
+        "start",
+        "symbol"
+      ],
+      "imports": [],
+      "code": "@dataclass\nclass Evidence:\n    path: str\n    start: int\n    end: int\n    source: str\n    rank: int = 0\n    score: float = 0.0\n    symbol: str | None = None\n    role: str = \"primary\"\n    query: str = \"\"\n    sources: list[str] = field(default_factory=list)  # every engine that found this range\n\n    def __post_init__(self) -> None:\n        if not self.sources:\n            self.sources = [self.source]"
+    },
+    "score": 0.6135329,
+    "matches": [
+      {
+        "line": 13,
+        "end_line": 28,
+        "name": "Evidence",
+        "score": 0.6135329
+      },
+      {
+        "line": 31,
+        "end_line": 35,
+        "name": "Edge",
+        "score": 0.26017702
+      },
+      {
+        "line": 45,
+        "end_line": 54,
+        "name": "ContextItem",
+        "score": 0.23618555
+      },
+      {
+        "line": 1,
+        "end_line": 8,
+        "name": "",
+        "score": 0.16374722
+      },
+      {
+        "line": 10,
+        "end_line": 10,
+        "name": "ROLE_PRIORITY",
+        "score": 0.14089778
+      },
+      {
+        "line": 26,
+        "end_line": 28,
+        "name": "Evidence.__post_init__",
+        "score": 0.08185345
+      },
+      {
+        "line": 70,
+        "end_line": 71,
+        "name": "ContextPackage.to_dict",
+        "score": 0.014132228
+      }
+    ]
+  }
+]

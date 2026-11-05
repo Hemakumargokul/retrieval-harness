@@ -1,0 +1,29 @@
+[defaults]
+deadline_s = 8
+per_engine_timeout_s = 5
+top_k = 8
+budget_tokens = 4000
+engines = ["ripgrep", "colgrep", "cbm"]
+colgrep_update = false   # true = colgrep re-indexes changed files before each search (slow)
+mermaid_min_edges = 3
+max_excerpt_lines = 80
+rrf_k = 60
+
+# LLM-as-judge: a local Ollama model removes excerpts it judges unnecessary.
+# Not bounded by deadline_s (a later optimisation); fails open if Ollama is unavailable.
+judge = true
+judge_model = "qwen3.5:4b"                # or set RH_JUDGE_MODEL; RH_JUDGE=0 turns the judge off
+judge_endpoint = "http://127.0.0.1:11434"
+judge_timeout_s = 60
+judge_num_ctx = 8192
+judge_min_items = 3
+judge_autostart = true     # start `ollama serve` if needed and stop it (and unload the model) afterwards
+judge_snippet_lines = 15
+
+[profile.claude-code]
+budget_tokens = 2200   # Claude Code caps additionalContext at 10,000 chars
+
+# for any agent running a small-context local model (e.g. Copilot + Ollama)
+[profile.local-small]
+budget_tokens = 2500
+deadline_s = 6

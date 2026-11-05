@@ -1,0 +1,7 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      { "hooks": [ { "type": "command", "command": "uv run --project /ABS/PATH/TO/retrieval-harness rh hook claude-code", "timeout": 10 } ] }
+    ]
+  }
+}

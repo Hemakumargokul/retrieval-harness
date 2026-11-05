@@ -1,0 +1,1 @@
+{"columns":["f.name","c.name","c.file_path","c.start_line","c.end_line"],"rows":[["retrieve","_retrieve","src/rh/retrieve.py","32","101"]],"returned":1,"total":1,"total_relation":"eq","has_more":false,"truncated":false}

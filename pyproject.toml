@@ -1,0 +1,32 @@
+[project]
+name = "retrieval-harness"
+version = "0.1.0"
+description = "Thin orchestration harness that injects retrieved code context into coding agents"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.0"]
+graph = [
+    "codebase-memory-mcp>=0.12.1",
+]
+
+[project.scripts]
+rh = "rh.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ripgrep>=15.1.0",
+]
+
+[tool.uv.build-backend]
+module-name = "rh"
+
+[build-system]
+requires = ["uv_build>=0.12.0,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: calls the real external tools"]

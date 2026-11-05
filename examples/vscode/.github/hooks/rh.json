@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "type": "command",
+        "command": "uv run --project /ABS/PATH/TO/retrieval-harness rh hook vscode --profile local-small",
+        "timeout": 15
+      }
+    ],
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "uv run --project /ABS/PATH/TO/retrieval-harness rh init --if-stale --background",
+        "timeout": 10
+      }
+    ]
+  }
+}

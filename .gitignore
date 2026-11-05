@@ -1,0 +1,18 @@
+.rh/
+__pycache__/
+.venv/
+*.egg-info/
+.pytest_cache/
+.tools/
+.claude/
+.vscode/
+.env
+.env.*
+*.pyc
+# personal working notes and generated eval tasks (contain local paths)
+NEXT.md
+TASKS.md
+VERIFY.md
+eval/tasks/
+eval/tasks-graphify/
+eval/__pycache__/

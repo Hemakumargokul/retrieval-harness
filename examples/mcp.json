@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "retrieval-harness": {
+      "command": "uv",
+      "args": ["run", "--project", "/ABS/PATH/TO/retrieval-harness", "--extra", "mcp", "rh", "mcp"],
+      "env": { "RH_REPO": "/ABS/PATH/TO/YOUR/REPO" }
+    }
+  }
+}

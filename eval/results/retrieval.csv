@@ -1,0 +1,81 @@
+task,config,file_recall@5,file_recall@10,test_recall@10,tokens,latency_ms,n_gold,index_s,diagnostics
+0a351eaa37,rg,0.0,1.0,,3109,53144,1,223.9,
+0a351eaa37,colgrep,1.0,1.0,,9581,37136,1,223.9,"judge:qwen3.5:4b: unusable answer, kept all"
+0a351eaa37,colgrep+rg,1.0,1.0,,10797,63844,1,223.9,judge:ollama unreachable or timed out: timed out; kept all
+0a351eaa37,colgrep+rg+cbm,1.0,1.0,,10424,68877,1,223.9,judge:ollama unreachable or timed out: timed out; kept all
+0d69958ff1,rg,0.0,0.0,1.0,13749,50370,1,259.4,"judge:qwen3.5:4b: unusable answer, kept all"
+0d69958ff1,colgrep,0.0,0.0,0.0,8028,41758,1,259.4,"judge:qwen3.5:4b: unusable answer, kept all"
+0d69958ff1,colgrep+rg,0.0,0.0,0.0,10780,61615,1,259.4,judge:ollama unreachable or timed out: timed out; kept all
+0d69958ff1,colgrep+rg+cbm,0.0,0.0,0.0,11374,51915,1,259.4,"judge:qwen3.5:4b: unusable answer, kept all"
+35f9adb48a,rg,1.0,1.0,1.0,11247,60696,1,230.8,judge:ollama unreachable or timed out: timed out; kept all
+35f9adb48a,colgrep,1.0,1.0,0.0,1726,38019,1,230.8,
+35f9adb48a,colgrep+rg,1.0,1.0,1.0,11708,62077,1,230.8,
+35f9adb48a,colgrep+rg+cbm,1.0,1.0,1.0,11322,66087,1,230.8,
+374adfadab,rg,0.0,0.0,0.0,1308,53907,1,160.9,
+374adfadab,colgrep,0.0,0.0,0.0,11556,37832,1,160.9,"judge:qwen3.5:4b: unusable answer, kept all"
+374adfadab,colgrep+rg,0.0,0.0,0.0,13631,55026,1,160.9,"judge:qwen3.5:4b: unusable answer, kept all"
+374adfadab,colgrep+rg+cbm,0.0,0.0,0.0,13521,65359,1,160.9,judge:ollama unreachable or timed out: timed out; kept all
+3c1754591a,rg,1.0,1.0,1.0,404,25844,1,200.4,
+3c1754591a,colgrep,1.0,1.0,0.0,8560,33695,1,200.4,"judge:qwen3.5:4b: unusable answer, kept all"
+3c1754591a,colgrep+rg,1.0,1.0,0.0,321,45073,1,200.4,
+3c1754591a,colgrep+rg+cbm,1.0,1.0,0.0,321,45004,1,200.4,
+44bd623a2e,rg,0.0,0.0,0.0,826,49156,2,192.0,
+44bd623a2e,colgrep,0.0,0.0,0.0,13105,41399,2,192.0,"judge:qwen3.5:4b: unusable answer, kept all"
+44bd623a2e,colgrep+rg,0.0,0.0,0.0,17682,47897,2,192.0,"judge:qwen3.5:4b: unusable answer, kept all"
+44bd623a2e,colgrep+rg+cbm,0.0,0.0,0.0,17647,47593,2,192.0,"judge:qwen3.5:4b: unusable answer, kept all"
+474d23b182,rg,0.0,0.5,,7843,56983,2,211.2,
+474d23b182,colgrep,0.5,0.5,,1801,37809,2,211.2,
+474d23b182,colgrep+rg,0.5,0.5,,13951,48598,2,211.2,"judge:qwen3.5:4b: unusable answer, kept all"
+474d23b182,colgrep+rg+cbm,0.5,0.5,,14664,52706,2,211.2,"judge:qwen3.5:4b: unusable answer, kept all"
+56a0329b31,rg,1.0,1.0,1.0,2526,45619,1,101.1,
+56a0329b31,colgrep,1.0,1.0,0.0,2406,42545,1,101.1,
+56a0329b31,colgrep+rg,1.0,1.0,1.0,2457,47119,1,101.1,
+56a0329b31,colgrep+rg+cbm,1.0,1.0,1.0,1743,46511,1,101.1,
+5f4cccf0e7,rg,1.0,1.0,0.0,13526,47094,1,160.1,"judge:qwen3.5:4b: unusable answer, kept all"
+5f4cccf0e7,colgrep,1.0,1.0,0.0,2451,37699,1,160.1,
+5f4cccf0e7,colgrep+rg,0.0,1.0,0.0,17683,47012,1,160.1,"judge:qwen3.5:4b: unusable answer, kept all"
+5f4cccf0e7,colgrep+rg+cbm,1.0,1.0,0.0,16837,50996,1,160.1,"judge:qwen3.5:4b: unusable answer, kept all"
+7a32f3324e,rg,1.0,1.0,1.0,13376,61614,1,218.4,judge:ollama unreachable or timed out: timed out; kept all
+7a32f3324e,colgrep,1.0,1.0,0.0,7578,29052,1,218.4,"judge:qwen3.5:4b: unusable answer, kept all"
+7a32f3324e,colgrep+rg,1.0,1.0,0.0,14760,62130,1,218.4,judge:ollama unreachable or timed out: timed out; kept all
+7a32f3324e,colgrep+rg+cbm,1.0,1.0,0.0,14760,62210,1,218.4,judge:ollama unreachable or timed out: timed out; kept all
+8b06e7033c,rg,1.0,1.0,1.0,758,41783,1,208.0,
+8b06e7033c,colgrep,0.0,0.0,1.0,10177,37858,1,208.0,"judge:qwen3.5:4b: unusable answer, kept all"
+8b06e7033c,colgrep+rg,0.0,1.0,1.0,12169,62484,1,208.0,judge:ollama unreachable or timed out: timed out; kept all
+8b06e7033c,colgrep+rg+cbm,1.0,1.0,1.0,12381,66716,1,208.0,judge:ollama unreachable or timed out: timed out; kept all
+8d39c75d02,rg,1.0,1.0,1.0,775,35266,1,209.8,
+8d39c75d02,colgrep,0.0,0.0,1.0,1366,48176,1,209.8,
+8d39c75d02,colgrep+rg,0.0,1.0,1.0,12190,62747,1,209.8,judge:ollama unreachable or timed out: timed out; kept all
+8d39c75d02,colgrep+rg+cbm,1.0,1.0,1.0,12186,66946,1,209.8,judge:ollama unreachable or timed out: timed out; kept all
+8ff7b39899,rg,0.0,0.0,0.0,22,0,2,106.2,
+8ff7b39899,colgrep,0.0,0.0,0.0,1006,38469,2,106.2,
+8ff7b39899,colgrep+rg,0.0,0.0,0.0,1006,38069,2,106.2,
+8ff7b39899,colgrep+rg+cbm,0.5,0.5,0.0,17975,66702,2,106.2,judge:ollama unreachable or timed out: timed out; kept all
+bf3aac0e28,rg,1.0,1.0,1.0,1170,45781,1,143.9,
+bf3aac0e28,colgrep,0.0,1.0,0.0,10742,42835,1,143.9,"judge:qwen3.5:4b: unusable answer, kept all"
+bf3aac0e28,colgrep+rg,1.0,1.0,0.0,12760,62406,1,143.9,judge:ollama unreachable or timed out: timed out; kept all
+bf3aac0e28,colgrep+rg+cbm,1.0,1.0,0.0,12760,66803,1,143.9,judge:ollama unreachable or timed out: timed out; kept all
+d2ac22c621,rg,1.0,1.0,,319,46894,1,214.7,
+d2ac22c621,colgrep,1.0,1.0,,9749,43096,1,214.7,"judge:qwen3.5:4b: unusable answer, kept all"
+d2ac22c621,colgrep+rg,1.0,1.0,,293,58904,1,214.7,
+d2ac22c621,colgrep+rg+cbm,1.0,1.0,,293,64163,1,214.7,
+e90a4b5dcf,rg,0.0,1.0,1.0,8197,62174,1,160.2,judge:ollama unreachable or timed out: timed out; kept all
+e90a4b5dcf,colgrep,0.0,0.0,0.0,353,45538,1,160.2,
+e90a4b5dcf,colgrep+rg,0.0,1.0,1.0,12968,63186,1,160.2,judge:ollama unreachable or timed out: timed out; kept all
+e90a4b5dcf,colgrep+rg+cbm,0.0,1.0,1.0,12317,67510,1,160.2,
+f000104ba9,rg,0.0,0.0,0.0,1403,26851,1,141.1,"judge:qwen3.5:4b: unusable answer, kept all"
+f000104ba9,colgrep,1.0,1.0,0.5,1053,42618,1,141.1,
+f000104ba9,colgrep+rg,1.0,1.0,0.5,1435,57809,1,141.1,
+f000104ba9,colgrep+rg+cbm,1.0,1.0,0.5,1435,62043,1,141.1,
+f893a6e2da,rg,1.0,1.0,,728,63410,2,208.9,
+f893a6e2da,colgrep,0.5,0.5,,11465,41616,2,208.9,"judge:qwen3.5:4b: unusable answer, kept all"
+f893a6e2da,colgrep+rg,1.0,1.0,,728,57958,2,208.9,
+f893a6e2da,colgrep+rg+cbm,1.0,1.0,,7922,69992,2,208.9,judge:ollama unreachable or timed out: timed out; kept all
+ffa5a6b051,rg,1.0,1.0,0.0,5505,55301,1,202.4,
+ffa5a6b051,colgrep,0.0,0.0,0.0,709,34716,1,202.4,
+ffa5a6b051,colgrep+rg,1.0,1.0,0.0,11377,61663,1,202.4,judge:ollama unreachable or timed out: timed out; kept all
+ffa5a6b051,colgrep+rg+cbm,1.0,1.0,0.0,12304,66060,1,202.4,judge:ollama unreachable or timed out: timed out; kept all
+ffaf5c820d,rg,0.0,0.0,0.0,22,24,1,155.9,
+ffaf5c820d,colgrep,1.0,1.0,0.0,980,38634,1,155.9,
+ffaf5c820d,colgrep+rg,1.0,1.0,0.0,980,38342,1,155.9,
+ffaf5c820d,colgrep+rg+cbm,1.0,1.0,1.0,1177,58205,1,155.9,
