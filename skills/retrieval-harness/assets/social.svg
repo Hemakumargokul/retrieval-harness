@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <rect width="1280" height="640" fill="#12161f"/>
+  <g transform="translate(90,120) scale(0.78)">
+    <svg viewBox="0 0 512 512" width="512" height="512">
+      <rect width="512" height="512" rx="112" fill="#1b2130"/>
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="22">
+        <path d="M96 128 H190 Q256 128 256 192" stroke="#f5a524"/>
+        <path d="M256 96 V192" stroke="#4cc9f0"/>
+        <path d="M416 128 H322 Q256 128 256 192" stroke="#9b7bff"/>
+        <path d="M256 192 V300" stroke="#e8ecf4"/>
+      </g>
+      <g fill="#1b2130" stroke-width="22">
+        <circle cx="96" cy="128" r="22" stroke="#f5a524"/>
+        <circle cx="256" cy="96" r="22" stroke="#4cc9f0"/>
+        <circle cx="416" cy="128" r="22" stroke="#9b7bff"/>
+      </g>
+      <rect x="136" y="300" width="240" height="108" rx="20" fill="#e8ecf4"/>
+      <g stroke="#12161f" stroke-width="14" stroke-linecap="round"><path d="M168 336 H328"/><path d="M168 370 H280"/></g>
+    </svg>
+  </g>
+  <text x="540" y="285" font-family="Helvetica, Arial, sans-serif" font-size="76" font-weight="700" fill="#e8ecf4">retrieval-harness</text>
+  <text x="542" y="350" font-family="Helvetica, Arial, sans-serif" font-size="31" fill="#9aa4b8">Exact + semantic + call-graph code search</text>
+  <text x="542" y="396" font-family="Helvetica, Arial, sans-serif" font-size="31" fill="#9aa4b8">in one token-budgeted context for agents</text>
+  <g font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="600">
+    <text x="542" y="470" fill="#f5a524">ripgrep</text>
+    <text x="672" y="470" fill="#4cc9f0">ColGREP</text>
+    <text x="812" y="470" fill="#9b7bff">call graph</text>
+  </g>
+</svg>

@@ -1,3 +1,5 @@
+<img src="skills/retrieval-harness/assets/icon.png" alt="retrieval-harness icon" width="96" align="right">
+
 # retrieval-harness
 
 [![M8ven Score](https://m8ven.ai/badge/mcp/hemakumargokul-retrieval-harness-1et49b?v=adbf7af6d5492d22683568ccac65d607)](https://m8ven.ai/mcp/hemakumargokul-retrieval-harness-1et49b?s=readme)
