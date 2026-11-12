@@ -1,4 +1,4 @@
-<img src="skills/retrieval-harness/assets/icon.png" alt="retrieval-harness icon" width="96" align="right">
+<img src="skills/retrieval-harness/assets/icon.png" alt="retrieval-harness icon" width="64" align="right">
 
 # retrieval-harness
 
