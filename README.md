@@ -24,6 +24,10 @@ uv run rh retrieve --task "find all callers of parse_config and rename it"
 ripgrep must be installed (`apt install ripgrep`, or it is provided by the dev group).
 A missing or unindexed engine is skipped with a diagnostic; retrieval still returns.
 
+## Install as a skill
+Copy `skills/retrieval-harness/` into `~/.claude/skills/` (or a project's `.claude/skills/`), or use
+`npx skills add Hemakumargokul/retrieval-harness`. The skill tells the agent when and how to run `rh`.
+
 ## See what each stage did (trace)
 Tracing is on by default. Every run writes `<repo>/.rh/trace/<timestamp>/trace.html` and `trace.json`
 (CLI and hooks alike), refreshes `<repo>/.rh/trace/latest/`, and keeps the newest 20 runs. `.rh/` is git-ignored.
