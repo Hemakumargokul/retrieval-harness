@@ -1,5 +1,7 @@
 # retrieval-harness
 
+[![M8ven Score](https://m8ven.ai/badge/mcp/hemakumargokul-retrieval-harness-1et49b?v=adbf7af6d5492d22683568ccac65d607)](https://m8ven.ai/mcp/hemakumargokul-retrieval-harness-1et49b?s=readme)
+
 > Combine exact (ripgrep), semantic (ColGREP) and call-graph (codebase-memory-mcp) code search into one
 > token-budgeted context for coding agents, with an optional local LLM judge and a per-run HTML trace.
 > Works with Claude Code, VS Code/Copilot, any MCP client, or plain CLI. Research prototype.
